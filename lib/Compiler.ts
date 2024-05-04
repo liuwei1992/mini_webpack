@@ -1,1 +1,5 @@
-export default class Compiler {}
+export class Compiler {
+  run() {
+    console.log('run...')
+  }
+}

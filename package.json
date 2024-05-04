@@ -4,13 +4,16 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "buildwebpack": "webpack",
+    "run": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.12.8",
     "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"

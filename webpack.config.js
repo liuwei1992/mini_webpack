@@ -1,6 +1,6 @@
-const path = require('path')
+import * as path from 'path'
 
-module.exports = {
+export default {
   mode: 'development',
   devtool: false,
   entry: './src/index.ts',
@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve('dist')
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.mts']
   },
   module: {
     rules: [

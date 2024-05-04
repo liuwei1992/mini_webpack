@@ -1,5 +1,3 @@
-console.log('hello webpack')
+import webpack from '../lib/webpack'
 
-export function test(name: string, age: number) {
-  console.log('hello webpack' + name, age)
-}
+webpack({}).run()
