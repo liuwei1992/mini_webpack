@@ -1,0 +1,1 @@
+function webpack(config: any) {}
