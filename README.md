@@ -14,5 +14,17 @@
       "node"
  ],
 ```
+3、命令行 "ts-node src/index.ts"
 
+## 生成.d.ts 的配置
+```json
+{
+  "compilerOptions":{
+    "declaration": true,// 是否生成声明文件
+    "declarationDir": "dist/type",// 声明文件打包的位置
+  }
+}
+```
+
+    // "start": "ts-node src/index.ts --mode=development --entry=src/index.js"
 

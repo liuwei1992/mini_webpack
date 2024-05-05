@@ -1,6 +1,7 @@
 import * as path from 'path'
+import { Configuration } from 'webpack'
 
-export default {
+const config: Configuration = {
   mode: 'development',
   devtool: false,
   entry: './src/index.ts',
@@ -21,3 +22,5 @@ export default {
     ]
   }
 }
+
+export default config

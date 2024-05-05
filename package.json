@@ -5,12 +5,17 @@
   "main": "webpack.config.js",
   "scripts": {
     "buildwebpack": "webpack",
-    "run": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/generator": "^7.24.5",
+    "@babel/parser": "^7.24.5",
+    "@babel/traverse": "^7.24.5",
     "@types/node": "^20.12.8",
+    "@types/webpack": "^5.28.5",
+    "babel-types": "^6.26.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",

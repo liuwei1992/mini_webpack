@@ -12,5 +12,6 @@
   "files.associations": {
     "*.ts": "typescript",
     "*.tsx": "typescriptreact"
-  }
+  },
+  "comments.visible": true
 }
