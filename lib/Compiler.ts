@@ -11,6 +11,12 @@ import * as types from 'babel-types'
 interface CompilerHook {
   [p: string]: SyncHook<any>
 }
+
+interface Module {
+  id: string
+  dependencies: string[]
+  name: string
+}
 export class Compiler {
   hooks: CompilerHook | null = null
   context: string | null = null
@@ -32,14 +38,39 @@ export class Compiler {
     const entry = formatEntry(this.options.entry)
 
     for (let entryName in entry) {
-      this.buildModule(
+      const module = this.buildModule(
         entryName,
         toUnixPath(path.join(this.context!, entry[entryName]))
       )
+
+      this.itlBuild(module)
     }
   }
 
-  buildModule(moduleName: string, modulePath: string) {
+  itlBuild(module: Module) {
+    if (module.dependencies?.length == 0) return
+    module.dependencies.forEach((path) => {
+      const nextModule = this.buildModule('', path)
+      this.itlBuild(nextModule)
+    })
+  }
+
+  /**
+   * 
+   * @param moduleName main
+   * @param modulePath /Users/liuwei/Desktop/myGit/mini_webpack/src/entry.ts
+   * @returns 
+   * {
+      id: './src/entry.ts',
+      dependencies: [
+        '/Users/liuwei/Desktop/myGit/mini_webpack/src/util.ts',
+        '/Users/liuwei/Desktop/myGit/mini_webpack/src/title.ts'
+      ],
+      name: 'main'
+    }
+   */
+  buildModule(moduleName: string = '', modulePath: string) {
+    console.log('modulePath', modulePath)
     const rules = this.options.module.rules
     let loaders: any = []
     for (let i = 0; i < rules.length; i++) {
@@ -59,9 +90,9 @@ export class Compiler {
       './' + path.posix.relative(toUnixPath(this.context!), modulePath)
 
     // 保存将来编译之后的产出
-    const module: any = { id: moduleId, dependencies: [], name: moduleName }
+    const module: Module = { id: moduleId, dependencies: [], name: moduleName }
 
-    // import { isObject } from './util' ->'src/util'
+    // import { isObject } from './util' ->'./src/util'
     // 使用 ast 语法树按着自己的需要来处理，然后将结果返回
     let ast = parser.parse(targetSourceCode, { sourceType: 'module' }) //import require
     traverse(ast, {
@@ -93,15 +124,7 @@ export class Compiler {
       }
     })
 
-    // console.log('ast', ast)
-
-    traverse(ast, {
-      ImportDeclaration: (NodePath) => {
-        const node = NodePath.node
-        console.log('node.source.value', node.source.value)
-      }
-    })
-
+    console.log('module', module)
     return module
   }
 }
