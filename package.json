@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "buildwebpack": "webpack",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node lib/run.ts",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -13,14 +14,22 @@
     "@babel/generator": "^7.24.5",
     "@babel/parser": "^7.24.5",
     "@babel/traverse": "^7.24.5",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__traverse": "^7.20.5",
+    "@types/babel-types": "^7.0.15",
     "@types/node": "^20.12.8",
     "@types/webpack": "^5.28.5",
     "babel-types": "^6.26.0",
+    "loader-utils": "^3.2.1",
+    "schema-utils": "^4.2.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "@types/loader-utils": "^2.0.6"
   }
 }

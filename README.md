@@ -26,5 +26,17 @@
 }
 ```
 
-    // "start": "ts-node src/index.ts --mode=development --entry=src/index.js"
-
+## 配置loader查找路径
+```
+ 1、设置查找路径
+ resolveLoader: {
+    modules: [path.resolve(__dirname, 'lib/loaders'), 'node_modules']
+ },
+ 2、设置绝对路径
+  rules: [
+    {
+      test: /\.tsx?$/,
+      use: [path.resolve(__dirname, 'lib/loaders', 'loader1.ts')],
+    }
+  ]
+```
